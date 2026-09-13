@@ -9,7 +9,7 @@ import Footer from '@/components/Footer/page'
 
 const Page = () => {
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <NavBar/>
       <Hero/>
       <ChatBot/>
