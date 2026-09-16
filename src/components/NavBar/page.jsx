@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import ThemeToggle from "./ThemeToggle";
 import "./navbar.css";
 
@@ -15,6 +16,7 @@ const links = [
 const NavBar = ({ toggleChatbot }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [listToggled , toggleList] = useState(false); 
+   const { resolvedTheme, setTheme } = useTheme();
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 1200);
@@ -35,7 +37,7 @@ const NavBar = ({ toggleChatbot }) => {
     <div className="navbar">
       <div className= {listToggled? "links rounded " : "links"}>
         <div className="logo">
-          <img src="/assets/Logo.svg" alt="ESI 101 logo" />
+          <img src={resolvedTheme === "dark" ? "/assets/logo-light.svg" :"/assets/logo-dark.svg" }alt="ESI 101 logo" />
         </div>
 
        

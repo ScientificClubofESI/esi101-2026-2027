@@ -83,7 +83,13 @@ a:hover{
   height: 100%;
   padding: 0;
   margin: 0;
-
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.logo img{
+  height: 24px;
+  width: 80px;
 }
 @media (max-width: 1213px) {
    .navbar .links .burger{
@@ -99,7 +105,7 @@ a:hover{
     height: 2px;
     border-radius: 2px;
     width: 100%;
-    background-color: var(--background);
+    background-color: var(--foreground);
 
   }
   .navbar {
@@ -143,6 +149,7 @@ a:hover{
     position: absolute;
     top: 100%;
     background-color: var(--navBar);
+    color: var(--foreground);
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -163,6 +170,8 @@ a:hover{
   position: absolute;
   inset: 0;
   background-color: var(--navBar);
+    color: var(--foreground);
+
   border-radius: inherit;
   z-index: 0;
 }
