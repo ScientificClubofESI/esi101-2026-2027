@@ -42,7 +42,7 @@ const NavBar = ({ toggleChatbot }) => {
 
        
 
-        <div className={listToggled ? "toggled" : "links-inner"} >
+        <div className={listToggled&&isMobile ? "toggled" : "links-inner"} >
           {links.map((link, index) => (
             <a className="font-haetten" href={link} key={index}>
               {link}
