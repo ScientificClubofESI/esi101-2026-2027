@@ -1,18 +1,18 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 
 const VIDEO_URL =  "https://www.w3schools.com/html/mov_bbb.mp4";
 
 const StudentQA = () => {
   const playerRef = useRef(null);
+  const videoRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  const handleWatch = () => {
-    const node = playerRef.current;
-    if (!node) return;
-    node.scrollIntoView({ behavior: "smooth", block: "center" });
-    node.querySelector("video")?.play?.();
+  const handlePlay = () => {
+    playerRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    videoRef.current?.play?.();
   };
 
   return (
@@ -53,16 +53,22 @@ const StudentQA = () => {
             <div className="absolute inset-[4.06px] overflow-clip rounded-[15.611px] lg:inset-[13px] lg:rounded-[50px] z-10">
               {VIDEO_URL ? (
                 <video
+                  ref={videoRef}
                   className="h-full w-full object-cover"
                   controls
                   src={VIDEO_URL}
                   poster="/assets/studentsQ&A/poster.jpg"
                   preload="metadata"
+                  playsInline
+                  onPlay={() => setIsPlaying(true)}
+                  onPause={() => setIsPlaying(false)}
+                  onEnded={() => setIsPlaying(false)}
                 />
-              ) : (
+              ) : null}
+              {!isPlaying && (
                 <button
                   aria-label="Play video"
-                  onClick={handleWatch}
+                  onClick={handlePlay}
                   className="absolute inset-0 z-20"
                 >
                   <Image
@@ -115,7 +121,7 @@ const StudentQA = () => {
         </div>
 
         <button
-          onClick={handleWatch}
+          onClick={handlePlay}
           className="relative z-10 rounded-[15px] bg-secondary-500 px-5 py-4 dark:bg-primary-500 lg:h-[65px] lg:w-[500px] lg:max-w-full lg:rounded-[20px] lg:px-[50px] lg:py-[20px]"
         >
           <span className="whitespace-nowrap font-consolas text-[14px] font-bold leading-[normal] text-primary-500 dark:text-[#f2fafd] lg:text-[24px]">
