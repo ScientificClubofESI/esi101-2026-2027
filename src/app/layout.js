@@ -10,7 +10,7 @@ const consolas = localFont({
     { path: '../../public/fonts/consolas-italic.ttf', weight: '400', style: 'italic' },
     { path: '../../public/fonts/consolas-bold-italic.ttf', weight: '700', style: 'italic' },
   ],
-  variable: '--font-consolas',
+  variable: '--font-consolas-local',
   display: 'swap',
 })
 
