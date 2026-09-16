@@ -8,7 +8,7 @@
     align-items: center;
     top : 0 ; 
     gap: 49px;
-    color: var(--background);/*inverse this color*/
+    color: var(--foreground);/*inverse this color*/
   font-size: 22px;
 font-weight: 600;
 opacity: 0.8;
@@ -63,7 +63,7 @@ a:hover{
   content: "";
   position: absolute;
   inset: 0;
-  background-color: var(--foreground);
+  background-color: var(--background);
   border-radius: inherit;
   z-index: 0;
 }
