@@ -16,7 +16,9 @@ const Page = () => {
       <About/>
       <StudentQA/>
       <FAQ/>
+      <div className="mt-auto">
       <Footer/>
+    </div>
     </div>
   )
 }
