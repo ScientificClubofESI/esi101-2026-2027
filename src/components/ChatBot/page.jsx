@@ -4,6 +4,16 @@ import Image from "next/image";
 import { X } from "lucide-react";
 const ChatBot = () => {
   const chatRef = useRef(null);
+  const questionRef = useRef(null);
+  const [showQuestions, setShowQuestions] = useState(true);
+  const [showBot, setShowBot] = useState(false);
+  const [questionResponse, setQuestionResponse] = useState([]);
+  useEffect(() => {
+    if (chatRef.current) {
+      chatRef.current.scrollTop = chatRef.current.scrollHeight;
+    }
+  }, [questionResponse]);
+
   function Questions() {
     const FAQs = [
       "What is student life at ESI really like beyond the classroom?",
@@ -29,36 +39,14 @@ const ChatBot = () => {
           />
         </div>
         <div className="flex flex-row overflow-x-scroll gap-x-1  custom-scrollbar">
-          <style jsx>
-            {`
-              .custom-scrollbar::-webkit-scrollbar {
-                height: 6px;
-              }
-              .custom-scrollbar::-webkit-scrollbar-track {
-                background: #edf9b4;
-                border-radius: 5px;
-              }
-
-              .custom-scrollbar::-webkit-scrollbar-thumb {
-                background: #172aaf;
-                border-radius: 5px;
-              }
-              :global(.dark) .custom-scrollbar::-webkit-scrollbar-track {
-                background: #8b95d7;
-                border-radius: 5px;
-              }
-              :global(.dark) .custom-scrollbar::-webkit-scrollbar-thumb {
-                background: #080e3a;
-                border-radius: 5px;
-              }
-            `}
-          </style>
+        
           {FAQs.map((FAQ, index) => (
             <div
               key={index}
-              className="min-h-13 rounded-[13px] bg-[#F2FAFD] pr-3 pl-3 pt-1 pb-1 mb-2 flex-none w-38.5 dark:bg-[#8B95D7] "
+              className="min-h-13 rounded-[13px] bg-[#F2FAFD] pr-3 pl-3 pt-1 pb-1 mb-2 flex-none w-38.5 dark:bg-[#8B95D7] cursor-pointer "
+              onClick={() => askQuestion(FAQ)}
             >
-              <p className=" text-[#33363A] font-consolas text-[11px] dark:[#00072A] ">
+              <p className=" text-[#33363A] font-consolas text-[11px] dark:text-[#00072A]">
                 {FAQ}
               </p>
             </div>
@@ -67,19 +55,16 @@ const ChatBot = () => {
       </div>
     );
   }
-  const questionRef = useRef(null);
-  const [showQuestions, setShowQuestions] = useState(true);
-  const [showBot, setShowBot] = useState(false);
 
-  const [questionResponse, setQuestionResponse] = useState([]);
-  useEffect(() => {
-    if (chatRef.current) {
-      chatRef.current.scrollTop = chatRef.current.scrollHeight;
+  function askQuestion(question) {
+    let value = "";
+    if (question === undefined) {
+      value = questionRef.current.value;
+      questionRef.current.value = "";
+    } else {
+      value = question;
     }
-  }, [questionResponse]);
-  function askQuestion() {
-    const value = questionRef.current.value;
-    questionRef.current.value = "";
+
     setShowQuestions(false);
     let result = {};
     result.question = value;
@@ -97,10 +82,10 @@ const ChatBot = () => {
     <div className="justify-end flex">
       <div className="  justify-end">
         <button
-          className="bg-[#C8ED1F]  rounded-[22px] h-14.5 items-center gap-x-6.5 flex flex-row pr-5 pl-5 w-57 cursor-pointer "
+          className="bg-[#C8ED1F]  rounded-[22px] h-14.5 items-center gap-x-6.5 flex flex-row pr-5 pl-5 md:w-57 cursor-pointer "
           onClick={() => setShowBot(true)}
         >
-          <p className="text-[#172AAF] text-[24px] font-haetten ">
+          <p className="text-[#172AAF] text-[24px] font-haetten max-md:hidden ">
             Chat with Cissou
           </p>
           <Image
@@ -111,17 +96,24 @@ const ChatBot = () => {
           />
         </button>
         {showBot && (
-          <div className="fixed w-190 h-140 bg-[#EDF9B4] dark:bg-[#6471CA] z-50 rounded-[30px] right-20 mt-4.5 flex flex-col pb-4 content-between ">
-            <div className="flex flex-row justify-between w-full items-start ">
+          <div className="fixed w-190 max-md:w-full  max-md:top-0 md:h-140 max-md:h-full bg-[#EDF9B4] max-[844px]:right-0 dark:bg-[#6471CA] z-50 md:rounded-[30px]  md:mt-4.5 flex flex-col pb-4 content-between  min-[844px]:right-20 ">
+            <div className="flex flex-row justify-between w-full md:items-start  max-md:items-center max-md:mt-7.5  max-md:pr-6 max-md:pl-6">
+              <Image
+                src="/assets/cissou.svg"
+                alt="img"
+                height={35}
+                width={35}
+                className="md:hidden  "
+              />
               <Image
                 src="/assets/top-left bot.svg"
                 alt="img"
                 height={190}
                 width={167}
-                className={`${questionResponse.length === 0 ? "" : "opacity-65"}`}
+                className={`${questionResponse.length === 0 ? "" : "opacity-65"} max-md:hidden  `}
               />
               <X
-                className="cursor-pointer mr-6.5 mt-4.5"
+                className="cursor-pointer md:mr-6.5 md:mt-4.5 "
                 height={24}
                 width={24}
                 color="#23313A"
@@ -129,7 +121,7 @@ const ChatBot = () => {
               />
             </div>
             {questionResponse.length === 0 ? (
-              <div className="flex flex-row justify-center  z-50 -mt-15">
+              <div className="flex flex-row justify-center  z-50 md:-mt-15 max-md:mt-65 ">
                 <div className="w-77.5 flex flex-col items-center  ">
                   <Image
                     src="/assets/cissou2.svg"
@@ -150,38 +142,18 @@ const ChatBot = () => {
               </div>
             ) : (
               <div
-                className=" z-50 -mt-30 overflow-y-scroll h-full custom-scrollbar1 mr-2.5"
+                className=" z-50 md:-mt-30 overflow-y-scroll h-full custom-scrollbar1 mr-2.5 max-md:mt-8 "
                 ref={chatRef}
               >
-                <style jsx>
-                  {`
-                    .custom-scrollbar1::-webkit-scrollbar {
-                      width: 5px;
-                    }
-                    .custom-scrollbar1::-webkit-scrollbar-track {
-                      background: #d1f044;
-                      border-radius: 2px;
-                    }
-                    .custom-scrollbar1::-webkit-scrollbar-thumb {
-                      background: #434f0a;
-                      border-radius: 2px;
-                    }
-
-                    :global(.dark) .custom-scrollbar1::-webkit-scrollbar-track {
-                      background: #3e4ebc;
-                      border-radius: 2px;
-                    }
-                    :global(.dark) .custom-scrollbar1::-webkit-scrollbar-thumb {
-                      background: #172aaf;
-                      border-radius: 2px;
-                    }
-                  `}
-                </style>
-
+              
+              
                 {questionResponse.map((res, index) => (
-                  <div key={index} className="mb-8">
+                  <div key={index} className="mb-8 ">
                     <div className="w-full flex justify-end pr-5">
-                      <div className="rounded-t-[15px] rounded-bl-[15px] bg-[#FFFFFF] pt-2.5 pb-2.5 pr-2.5 pl-5 w-fit dark:bg-[#8B95D7]  ">
+                      <div
+                        className="rounded-t-[15px] rounded-bl-[15px] bg-[#FFFFFF] pt-2.5 pb-2.5 pr-2.5 pl-5 
+                       dark:bg-[#8B95D7] md:w-100 min-[522px]:w-80 max-[522px]:w-66 "
+                      >
                         <p className="text-[#00072A]  text-[16px] font-consolas dark:text-[#00072A] ">
                           {res.question}
                         </p>{" "}
@@ -195,7 +167,10 @@ const ChatBot = () => {
                         alt="cissou"
                         className=""
                       />
-                      <div className="rounded-b-[15px] dark:bg-[#3E4EBC] rounded-tr-[15px] bg-[#DAF36A] pt-2.5 pb-2.5 pr-2.5 pl-5 w-116  ml-10">
+                      <div
+                        className="rounded-b-[15px] dark:bg-[#3E4EBC] rounded-tr-[15px] bg-[#DAF36A] pt-2.5 pb-2.5 pr-2.5 pl-5 
+                     ml-10  md:w-116 min-[522px]:w-80 max-[522px]:w-69  "
+                      >
                         <p className="text-[#00072A]  text-[16px] font-consolas dark:text-[#F2FAFD] ">
                           {res.response}
                         </p>{" "}
