@@ -7,14 +7,24 @@
 }
 
 .dark {
-  --background: #00072a;
-  --foreground: #f2fafd;
+  --background: #00072A;
+  --foreground: #F2FAFD;
+  --navBar : #0C1558 ;
+
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary-500: #172AAF;
+  --color-primary-600: #132392;
+  --color-primary-900: #080E3A;
+  --color-secondary-500: #C8ED1F;
+  --color-secondary-600: #A7C61A;
+  --color-secondary-700: #859E15;
+  --color-secondary-900: #434F0A;
   --font-consolas: var(--font-consolas), monospace;
+  --font-consolas: var(--font-consolas-local), monospace;
   --font-haetten: var(--font-haettenschweiler), Impact, sans-serif;
 }
 
@@ -67,3 +77,4 @@ body {
   background: #172aaf;
   border-radius: 2px;
 }
+
