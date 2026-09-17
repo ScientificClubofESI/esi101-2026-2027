@@ -29,7 +29,7 @@
   aspect-ratio: 16 / 9;
   overflow: hidden;
 
-  background: var(--bg);
+
   color: var(--navy);
 
   font-family: var(--font-consolas), ui-monospace, "IBM Plex Mono", monospace;
@@ -63,11 +63,11 @@
      but larger */
   font-family: var(--font-haettenschweiler), "Arial Narrow", sans-serif;
   font-size: clamp(35px, 5vw, 70px);
-  font-weight: 700;
+  font-weight: 500;
   line-height: 0.95;
   letter-spacing: 0.18vw;
 
-  color: var(--navy);
+
 }
 
 .title-green {
