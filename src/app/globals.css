@@ -4,11 +4,14 @@
 :root {
   --background: #F2FAFD;
   --foreground: #00072A;
+  --navBar : #B2B8E4 ;
 }
 
 .dark {
   --background: #00072A;
   --foreground: #F2FAFD;
+  --navBar : #0C1558 ;
+
 }
 
 @theme inline {
