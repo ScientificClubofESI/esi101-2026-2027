@@ -58,7 +58,10 @@ const Footer = () => {
   const isDark = mounted && resolvedTheme === "dark";
 
   return (
-    <footer className="relative w-full overflow-hidden bg-background text-foreground dark:bg-[#00072A] dark:text-white">
+    <footer
+      id="contact"
+      className="relative w-full overflow-hidden bg-background text-foreground dark:bg-[#00072A] dark:text-white"
+    >
       {/* ================= LEFT DECORATION ================= */}
 
       <div className="absolute bottom-0 left-0 block h-[110px] w-[150px] md:h-[200px] md:w-[272px] dark:hidden">

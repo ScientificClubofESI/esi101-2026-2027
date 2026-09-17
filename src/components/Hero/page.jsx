@@ -78,7 +78,13 @@ const buttonStyle =
 const ChatButton = ({ className = "" }) => (
   <button type="button" className={`${buttonStyle} ${className}`}>
     Chat with Cissou
-    <Image src={CISSOU_LOGO} alt="" width={31} height={28} className="h-[1.15em] w-auto" />
+    <Image
+      src={CISSOU_LOGO}
+      alt=""
+      width={31}
+      height={28}
+      className="h-[1.15em] w-auto"
+    />
   </button>
 );
 
@@ -89,7 +95,7 @@ const Hero = () => {
 
       {/* Narrow screens: button above the card. */}
       <div className="mb-3 flex justify-end min-[1100px]:hidden">
-        <ChatButton className="flex" />
+        {/* <ChatButton className="flex" /> */}
       </div>
 
       <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] min-[1100px]:aspect-[53/27]">
@@ -105,7 +111,7 @@ const Hero = () => {
         </div>
 
         {/* Wide screens: button inside the top-right notch. */}
-        <ChatButton className="hidden min-[1100px]:flex absolute right-[1.1%] top-[2.16%] w-[18.5%] h-[9%] cursor-pointer  hover:brightness-110" />
+        {/* <ChatButton className="hidden min-[1100px]:flex absolute right-[1.1%] top-[2.16%] w-[18.5%] h-[9%] cursor-pointer  hover:brightness-110" /> */}
 
         <h1 className="absolute left-[4%] bottom-[5%] w-[52%] sm:w-[40%] min-[1100px]:left-[2.4%] min-[1100px]:bottom-[18%] min-[1100px]:w-[31.7%]">
           <Image
@@ -119,13 +125,17 @@ const Hero = () => {
         </h1>
 
         {/* Wide screens: caption inside the bottom-left notch. */}
-        <p className={`hidden min-[1100px]:flex absolute left-[1.1%] bottom-[0.6%] w-[43%] h-[11.5%] ${captionStyle}`}>
+        <p
+          className={`hidden min-[1100px]:flex absolute left-[1.1%] bottom-[0.6%] w-[43%] h-[11.5%] ${captionStyle}`}
+        >
           {CAPTION}
         </p>
       </div>
 
       {/* Narrow screens: caption under the card. */}
-      <p className={`mt-3 flex py-[1em] min-[1100px]:hidden ${captionStyle}`}>{CAPTION}</p>
+      <p className={`mt-3 flex py-[1em] min-[1100px]:hidden ${captionStyle}`}>
+        {CAPTION}
+      </p>
     </section>
   );
 };

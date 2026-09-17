@@ -1,15 +1,16 @@
 @import "tailwindcss";
-@variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   --background: #f2fafd;
   --foreground: #00072a;
+  --navBar: #B2B8E4;
 }
 
 .dark {
   --background: #00072A;
   --foreground: #F2FAFD;
-  --navBar : #0C1558 ;
+  --navBar: #0C1558;
 
 }
 
@@ -39,6 +40,7 @@ body {
 .custom-scrollbar::-webkit-scrollbar {
   height: 6px;
 }
+
 .custom-scrollbar::-webkit-scrollbar-track {
   background: #edf9b4;
   border-radius: 5px;
@@ -48,10 +50,12 @@ body {
   background: #172aaf;
   border-radius: 5px;
 }
+
 .dark .custom-scrollbar::-webkit-scrollbar-track {
   background: #8b95d7;
   border-radius: 5px;
 }
+
 .dark .custom-scrollbar::-webkit-scrollbar-thumb {
   background: #080e3a;
   border-radius: 5px;
@@ -60,10 +64,12 @@ body {
 .custom-scrollbar1::-webkit-scrollbar {
   width: 5px;
 }
+
 .custom-scrollbar1::-webkit-scrollbar-track {
   background: #d1f044;
   border-radius: 2px;
 }
+
 .custom-scrollbar1::-webkit-scrollbar-thumb {
   background: #434f0a;
   border-radius: 2px;
@@ -73,8 +79,8 @@ body {
   background: #3e4ebc;
   border-radius: 2px;
 }
+
 .dark .custom-scrollbar1::-webkit-scrollbar-thumb {
   background: #172aaf;
   border-radius: 2px;
 }
-

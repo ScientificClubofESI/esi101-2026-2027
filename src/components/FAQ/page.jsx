@@ -4,7 +4,10 @@ import FaqCarousel from "./FaqCarousel";
 
 export default function FaqSection() {
   return (
-    <section className="w-full max-w-[1400px] mx-auto px-6 md:px-16 lg:px-4 py-16">
+    <section
+      id="faq"
+      className="w-full max-w-[1400px] mx-auto px-6 md:px-16 lg:px-4 py-16"
+    >
       {/* Titre + décoration */}
       <div className="relative inline-block mb-6 md:mb-10">
         <Image
@@ -48,37 +51,37 @@ export default function FaqSection() {
         <FaqCarousel />
       </div>
 
-   {/* Décoration bas droite */}
-<div className="flex flex-row-reverse justify-start md:flex-row md:justify-end items-center gap-1 mt-4">
-  <Image
-    src="/assets/Vector_light.svg"
-    alt=""
-    width={14}
-    height={14}
-    className="w-[10px] h-[10px] md:w-[14px] md:h-[14px] dark:hidden"
-  />
-  <Image
-    src="/assets/Vector_dark.svg"
-    alt=""
-    width={14}
-    height={14}
-    className="w-[10px] h-[10px] md:w-[14px] md:h-[14px] hidden dark:block"
-  />
-  <Image
-    src="/assets/Vector_Group_light.svg"
-    alt=""
-    width={76}
-    height={13}
-    className="w-[50px] h-[9px] md:w-[76px] md:h-[13px] dark:hidden"
-  />
-  <Image
-    src="/assets/Vector_Group_dark.svg"
-    alt=""
-    width={76}
-    height={13}
-    className="w-[50px] h-[9px] md:w-[76px] md:h-[13px] hidden dark:block"
-  />
-</div>
+      {/* Décoration bas droite */}
+      <div className="flex flex-row-reverse justify-start md:flex-row md:justify-end items-center gap-1 mt-4">
+        <Image
+          src="/assets/Vector_light.svg"
+          alt=""
+          width={14}
+          height={14}
+          className="w-[10px] h-[10px] md:w-[14px] md:h-[14px] dark:hidden"
+        />
+        <Image
+          src="/assets/Vector_dark.svg"
+          alt=""
+          width={14}
+          height={14}
+          className="w-[10px] h-[10px] md:w-[14px] md:h-[14px] hidden dark:block"
+        />
+        <Image
+          src="/assets/Vector_Group_light.svg"
+          alt=""
+          width={76}
+          height={13}
+          className="w-[50px] h-[9px] md:w-[76px] md:h-[13px] dark:hidden"
+        />
+        <Image
+          src="/assets/Vector_Group_dark.svg"
+          alt=""
+          width={76}
+          height={13}
+          className="w-[50px] h-[9px] md:w-[76px] md:h-[13px] hidden dark:block"
+        />
+      </div>
     </section>
   );
 }

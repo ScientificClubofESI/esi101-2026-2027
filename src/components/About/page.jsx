@@ -31,6 +31,7 @@ export default function WhoBehind() {
 
   return (
     <main
+      id="about"
       ref={slideRef}
       className="who-page my-20"
       onMouseMove={handleProximity}

@@ -27,7 +27,7 @@ const ChatBot = () => {
     return (
       <div className="bg-[#DAF36A] dark:bg-[#3E4EBC] rounded-[17px] pr-2 pl-4 pt-2 pb-2">
         <div className="flex flex-row  items-center justify-between">
-          <p className="font-haetten text-[#172AAF] dark:text-[#080E3A] text-[23px] ">
+          <p className="font-haetten text-primary-500 dark:text-primary-900 text-[23px] ">
             Questions you May Ask !
           </p>
           <X
@@ -39,7 +39,6 @@ const ChatBot = () => {
           />
         </div>
         <div className="flex flex-row overflow-x-scroll gap-x-1  custom-scrollbar">
-        
           {FAQs.map((FAQ, index) => (
             <div
               key={index}
@@ -82,10 +81,10 @@ const ChatBot = () => {
     <div className="justify-end flex">
       <div className="  justify-end">
         <button
-          className="bg-[#C8ED1F]  rounded-[22px] h-14.5 items-center gap-x-6.5 flex flex-row pr-5 pl-5 md:w-57 cursor-pointer "
+          className="bg-secondary-500  fixed md:absolute bottom-10  z-50 right-5  md:top-14 md:right-24   rounded-[15px] h-14.5 items-center gap-x-6.5 flex flex-row pr-5 pl-5 md:w-57 cursor-pointer "
           onClick={() => setShowBot(true)}
         >
-          <p className="text-[#172AAF] text-[24px] font-haetten max-md:hidden ">
+          <p className="text-primary-500 text-[24px] font-haetten max-md:hidden ">
             Chat with Cissou
           </p>
           <Image
@@ -96,7 +95,11 @@ const ChatBot = () => {
           />
         </button>
         {showBot && (
-          <div className="fixed w-190 max-md:w-full  max-md:top-0 md:h-140 max-md:h-full bg-[#EDF9B4] max-[844px]:right-0 dark:bg-[#6471CA] z-50 md:rounded-[30px]  md:mt-4.5 flex flex-col pb-4 content-between  min-[844px]:right-20 ">
+          <div
+            className="fixed top-4 right-20 w-190 max-md:w-full max-md:right-0 max-md:top-0
+  md:h-140 max-md:h-full bg-[#EDF9B4] dark:bg-[#6471CA] z-50
+  md:rounded-[30px] flex flex-col pb-4 content-between"
+          >
             <div className="flex flex-row justify-between w-full md:items-start  max-md:items-center max-md:mt-7.5  max-md:pr-6 max-md:pl-6">
               <Image
                 src="/assets/cissou.svg"
@@ -129,8 +132,8 @@ const ChatBot = () => {
                     height={64}
                     width={69}
                   />
-                  <p className="text-[32px] text-[#172AAF]  font-haetten">
-                    <span className="text-[#A7C61A]  dark:text-[#00072A]">
+                  <p className="text-[32px] text-primary-500  font-haetten">
+                    <span className="text-secondary-500 dark:text-[#00072A]">
                       Hey there ,
                     </span>{" "}
                     I’m Cissou !
@@ -145,8 +148,6 @@ const ChatBot = () => {
                 className=" z-50 md:-mt-30 overflow-y-scroll h-full custom-scrollbar1 mr-2.5 max-md:mt-8 "
                 ref={chatRef}
               >
-              
-              
                 {questionResponse.map((res, index) => (
                   <div key={index} className="mb-8 ">
                     <div className="w-full flex justify-end pr-5">
@@ -187,7 +188,7 @@ const ChatBot = () => {
               <div className="w-full pr-4 pl-4  flex flex-col  gap-y-3 mt-auto  ">
                 {showQuestions && <Questions />}
 
-                <div className=" bg-[#C8ED1F] rounded-[17px] pr-7.5 pl-7.5 pt-3.75 pb-3.75 flex flex-row justify-between items-center dark:bg-[#3E4EBC] ">
+                <div className=" bg-secondary-500 rounded-[17px] pr-7.5 pl-7.5 pt-3.75 pb-3.75 flex flex-row justify-between items-center dark:bg-[#3E4EBC] ">
                   <textarea
                     className="outline-0  w-full scrollbar-none h-6 resize-none   text-[17px] font-consolas  placeholder:opacity-100 placeholder:text-[#00072A] dark:placeholder:text-[#EFEFF0] "
                     placeholder="Ask Cissou here"

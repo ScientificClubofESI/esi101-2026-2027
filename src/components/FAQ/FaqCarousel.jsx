@@ -103,7 +103,7 @@ export default function FaqCarousel() {
         </button>
 
         {/* Carte avec effet flip — 270 x 375 */}
-        <div className="[perspective:1000px] w-[270px] h-[375px]">
+        <div className="perspective-[1000px w-[270px] h-[375px]">
           <div
             onClick={() => setFlipped((prev) => !prev)}
             className={`relative w-full h-full cursor-pointer transition-transform duration-300 ease-out [transform-style:preserve-3d] ${
