@@ -16,7 +16,7 @@ const StudentQA = () => {
   };
 
   return (
-    <section className="relative mx-auto flex w-full px-[10%] flex-col items-center gap-4 py-12 lg:gap-6 overflow-x-clip">
+    <section className="relative mx-auto flex w-full px-5 lg:px-[10%] flex-col items-center gap-4 py-12 lg:gap-6 overflow-x-clip">
 
         <div className="relative w-full pt-4 lg:pt-0">
           <Image
@@ -45,12 +45,12 @@ const StudentQA = () => {
           journey at ESI!
         </p>
 
-        <div className="relative mx-auto mb-10 aspect-[1105/641] w-full">
+        <div className="relative mb-10 aspect-[1105/641] w-full mx-auto">
           <div
             ref={playerRef}
-            className="relative h-full w-full overflow-clip rounded-[18.733px] border-[0.6px] border-dashed border-primary-900 lg:rounded-[60px] lg:border-2 lg:border-primary-500 dark:lg:border-secondary-500"
+            className="relative h-full overflow-clip rounded-[18px] border-[0.6px] border-dashed border-primary-900 lg:rounded-[60px] lg:border-2 lg:border-primary-500 dark:lg:border-secondary-500"
           >
-            <div className="absolute inset-[4.06px] overflow-clip rounded-[15.611px] lg:inset-[13px] lg:rounded-[50px] z-10">
+            <div className="absolute inset-[4px] overflow-clip rounded-[15px] lg:inset-[13px] lg:rounded-[50px] z-10">
               {VIDEO_URL ? (
                 <video
                   ref={videoRef}
