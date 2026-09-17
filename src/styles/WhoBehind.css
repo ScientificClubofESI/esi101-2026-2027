@@ -22,7 +22,7 @@
   --lime: #c7da3c;
   --banner: #cbdd3f;
   --olive: #a9be2e;
-  --bg: #e9f2fb;
+  --bg: #F2FAFD;
 
   position: relative;
   width: 100%;
@@ -129,7 +129,7 @@
 .decoration-left {
   position: absolute;
   left: 82vw;
-  top:-102;
+  top: -102;
   width: 15vw;
   height: auto;
 
@@ -337,11 +337,30 @@
 
 /* Resting positions — a tight, slightly-rotated stack.
    card-3 is the front / hero card. */
-.card-1 { transform: translate(-0.8vw, 0.73vw) rotate(-6deg); z-index: 1; }
-.card-2 { transform: translate(-0.4vw, -0.45vw) rotate(4deg); z-index: 2; }
-.card-3 { transform: translate(0, 0) rotate(0deg);            z-index: 3; }
-.card-4 { transform: translate(0.4vw, 0.56vw) rotate(5deg);   z-index: 2; }
-.card-5 { transform: translate(0.8vw, -0.34vw) rotate(-3deg); z-index: 1; }
+.card-1 {
+  transform: translate(-0.8vw, 0.73vw) rotate(-6deg);
+  z-index: 1;
+}
+
+.card-2 {
+  transform: translate(-0.4vw, -0.45vw) rotate(4deg);
+  z-index: 2;
+}
+
+.card-3 {
+  transform: translate(0, 0) rotate(0deg);
+  z-index: 3;
+}
+
+.card-4 {
+  transform: translate(0.4vw, 0.56vw) rotate(5deg);
+  z-index: 2;
+}
+
+.card-5 {
+  transform: translate(0.8vw, -0.34vw) rotate(-3deg);
+  z-index: 1;
+}
 
 
 /* =========================================================

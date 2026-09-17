@@ -32,7 +32,7 @@ export default function WhoBehind() {
   return (
     <main
       ref={slideRef}
-      className="who-page"
+      className="who-page my-20"
       onMouseMove={handleProximity}
       onMouseLeave={() => setExpanded(false)}
     >
@@ -85,8 +85,8 @@ export default function WhoBehind() {
           <div className="description-corner description-corner-right" />
 
           <p>
-            CSE — the Scientific Club of ESI! Founded in 2008 by students of
-            the National School of Computer Science, CSE is a vibrant community
+            CSE — the Scientific Club of ESI! Founded in 2008 by students of the
+            National School of Computer Science, CSE is a vibrant community
             where students learn, create, connect, and explore technology
             through fun, creative, and unforgettable experiences!
           </p>
