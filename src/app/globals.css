@@ -4,11 +4,18 @@
 :root {
   --background: #F2FAFD;
   --foreground: #00072A;
+  --lime: #C8ED1F;
+  --periwinkle: #BFC5E9;
+  /* constant in both themes: text that always sits on lime/periwinkle */
+  --ink: #00072A;
+  /* Cissou blue: chat button label/icon and caption border */
+  --royal: #172AAF;
 }
 
 .dark{
   --background: #00072A;
   --foreground: #F2FAFD;
+  --periwinkle: #8B95D7;
 }
 
 
@@ -16,6 +23,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-lime: var(--lime);
+  --color-periwinkle: var(--periwinkle);
+  --color-ink: var(--ink);
+  --color-royal: var(--royal);
   --font-consolas: var(--font-consolas), monospace;
   --font-haetten: var(--font-haettenschweiler), Impact, sans-serif;
 }
