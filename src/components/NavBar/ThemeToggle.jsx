@@ -13,7 +13,7 @@ export default function ThemeToggle() {
   }, []);
 
   if (!mounted) {
-    return <div className="w-6 h-6" />;
+    return <div className="w-10 h-10" />;
   }
 
   const isDark = resolvedTheme === "dark";
@@ -21,7 +21,7 @@ export default function ThemeToggle() {
   return (
     <button 
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="p-2 rounded-md hover:border-[1px] hover:border-[rgba(158, 156, 156, 0.25)] dark:hover:border-gray-600 cursor-pointer"
+      className="p-2 rounded-md hover:border-[1px] hover:border-[rgba(158,156,156,0.25)] cursor-pointer"
       aria-label={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
     >
       <Image 
