@@ -4,22 +4,16 @@
 :root {
   --background: #F2FAFD;
   --foreground: #00072A;
-  --accordion: #C8ED1F;
-  --accordion-back: #D1F044;
 }
 
 .dark {
   --background: #00072A;
   --foreground: #F2FAFD;
-  --accordion: #172AAF;
-  --accordion-back: #3E4EBC;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-accordion: var(--accordion);
-  --color-accordion-back: var(--accordion-back);
   --font-consolas: var(--font-consolas-local), monospace;
   --font-haetten: var(--font-haettenschweiler), Impact, sans-serif;
 }
