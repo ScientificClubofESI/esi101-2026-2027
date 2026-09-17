@@ -1,38 +1,18 @@
 "use client";
 
 import { useState, useLayoutEffect, useRef } from "react";
-
-const faqData = [
-   {
-    question: "What is Student life at ESI really like?",
-    answer: "You can fully integrate into the club by actively participating in events, joining project teams, attending weekly meetings, and connecting with other members through our social activities and workshopsYou can fully integrate into the club by actively participating in events, joining project teams, attending weekly meetings, and connecting with other members through our social activities and workshops",
-  },
-  {
-    question: "Is ESI as difficult as people say?",
-    answer: "You can fully integrate into the club by actively participating in events, joining project teams, attending weekly meetings, and connecting with other members through our social activities and workshopsYou can fully integrate into the club by actively participating in events, joining project teams, attending weekly meetings, and connecting with other members through our social activities and workshops",
-  },
-  {
-    question: "What should I expect in my first year?",
-    answer: "You can fully integrate into the club by actively participating in events, joining project teams, attending weekly meetings, and connecting with other members through our social activities and workshopsYou can fully integrate into the club by actively participating in events, joining project teams, attending weekly meetings, and connecting with other members through our social activities and workshops",
-  },
-  {
-    question: "How do I manage my time at ESI?",
-    answer: "You can fully integrate into the club by actively participating in events, joining project teams, attending weekly meetings, and connecting with other members through our social activities and workshopsYou can fully integrate into the club by actively participating in events, joining project teams, attending weekly meetings, and connecting with other members through our social activities and workshops",
-  },
-  {
-    question: "What are the best ways to get involved?",
-    answer: "You can fully integrate into the club by actively participating in events, joining project teams, attending weekly meetings, and connecting with other members through our social activities and workshopsYou can fully integrate into the club by actively participating in events, joining project teams, attending weekly meetings, and connecting with other members through our social activities and workshops",
-  },
-];
+import faqData from "./FaqData.json";
 
 /**
  * Réduit progressivement la taille de police tant que le texte
  * dépasse la hauteur de son conteneur.
  */
-function useAutoFitText(text, { maxFontSize, minFontSize = 14, lineHeight = 1.1 }) {
+function useAutoFitText(
+  text,
+  { maxFontSize, minFontSize = 14, lineHeight = 1.1 },
+) {
   const containerRef = useRef(null);
   const textRef = useRef(null);
-  const [fontSize, setFontSize] = useState(maxFontSize);
 
   useLayoutEffect(() => {
     const container = containerRef.current;
@@ -47,10 +27,9 @@ function useAutoFitText(text, { maxFontSize, minFontSize = 14, lineHeight = 1.1 
       size -= 1;
       textEl.style.fontSize = `${size}px`;
     }
-    setFontSize(size);
   }, [text, maxFontSize, minFontSize, lineHeight]);
 
-  return { containerRef, textRef, fontSize };
+  return { containerRef, textRef };
 }
 
 function Chevron({ direction = "right" }) {
@@ -82,22 +61,20 @@ export default function FaqCarousel() {
   const item = faqData[current];
   const number = String(current + 1).padStart(2, "0");
 
-  const {
-  containerRef: questionBoxRef,
-  textRef: questionTextRef,
-} = useAutoFitText(item.question, {
-  maxFontSize: 24,
-  minFontSize: 18,
-  lineHeight: 1.2,
-});
- const {
-  containerRef: answerBoxRef,
-  textRef: answerTextRef,
-} = useAutoFitText(item.answer, {
-  maxFontSize: 18,
-  minFontSize: 14,
-  lineHeight: 2,
-});
+  const { containerRef: questionBoxRef, textRef: questionTextRef } =
+    useAutoFitText(item.question, {
+      maxFontSize: 24,
+      minFontSize: 18,
+      lineHeight: 1.2,
+    });
+  const { containerRef: answerBoxRef, textRef: answerTextRef } = useAutoFitText(
+    item.answer,
+    {
+      maxFontSize: 16,
+      minFontSize: 10,
+      lineHeight: 1.2,
+    },
+  );
   const goPrev = () => {
     if (isFirst) return;
     setFlipped(false);
@@ -127,18 +104,19 @@ export default function FaqCarousel() {
 
         {/* Carte avec effet flip — 270 x 375 */}
         <div className="[perspective:1000px] w-[270px] h-[375px]">
-         <div
-  onClick={() => setFlipped((prev) => !prev)}
-  className={`relative w-full h-full cursor-pointer transition-transform duration-300 ease-out [transform-style:preserve-3d] ${
-    flipped ? "[transform:rotateY(180deg)]" : ""
-  }`}
->
-          {/* Face avant */}
-<div
-  className="
+          <div
+            onClick={() => setFlipped((prev) => !prev)}
+            className={`relative w-full h-full cursor-pointer transition-transform duration-300 ease-out [transform-style:preserve-3d] ${
+              flipped ? "[transform:rotateY(180deg)]" : ""
+            }`}
+          >
+            {/* Face avant */}
+            <div
+              className="
     absolute inset-0
     [backface-visibility:hidden]
-    bg-accordion
+    bg-[#C8ED1F]
+    dark:bg-[#172AAF]
     rounded-[32px]
     flex flex-col
     items-center
@@ -146,10 +124,10 @@ export default function FaqCarousel() {
 pt-[106px]
 pb-10
   "
->
-  {/* Numéro */}
-  <span
-    className="
+            >
+              {/* Numéro */}
+              <span
+                className="
       font-consolas
       font-bold
       text-[40px]
@@ -158,52 +136,45 @@ pb-10
       dark:text-[#D7ED33]
       mb-6
     "
-  >
-    {number}.
-  </span>
+              >
+                {number}.
+              </span>
 
-  {/* Question */}
-  <div
-    ref={questionBoxRef}
-    className="w-full flex-1 min-h-0 font-consolas font-bold text-foreground whitespace-pre-line"
-  >
-    <p
-      ref={questionTextRef}
-      className="
+              {/* Question */}
+              <div
+                ref={questionBoxRef}
+                className="w-full flex-1 min-h-0 font-consolas font-bold text-foreground whitespace-pre-line"
+              >
+                <p
+                  ref={questionTextRef}
+                  className="
         w-full
-        font-consolas
-        font-bold
-        text-foreground
         text-left
       "
-    >
-      {item.question}
-    </p>
-  </div>
-</div>
+                >
+                  {item.question}
+                </p>
+              </div>
+            </div>
 
-       
-{/* Face arrière */}
-<div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] bg-accordion-back rounded-[32px] overflow-hidden">
-  <p
-    className="
-      absolute
-      top-[42px]
-      left-[22px]
-      w-[226px]
-      h-[288px]
+            {/* Face arrière */}
+            <div
+              ref={answerBoxRef}
+              className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] bg-[#D1F044] dark:bg-[#3E4EBC] rounded-[32px] p-6 flex items-center justify-center overflow-hidden"
+            >
+              <p
+                ref={answerTextRef}
+                className="
+      w-full
       font-consolas
       font-normal
-      text-[15px]
-      leading-[1.21]
-      tracking-normal
+      text-left
       text-[#27292D] dark:text-white
-      overflow-hidden
     "
-  >
-    {item.answer}
-  </p>
-</div>
+              >
+                {item.answer}
+              </p>
+            </div>
           </div>
         </div>
 
@@ -226,7 +197,9 @@ pb-10
           <span
             key={i}
             className={`w-2.5 h-2.5 rounded-full transition-colors ${
-              i === current ? "bg-[#1E2A8C] dark:bg-[#D7ED33]" : "bg-foreground/20"
+              i === current
+                ? "bg-[#1E2A8C] dark:bg-[#D7ED33]"
+                : "bg-foreground/20"
             }`}
           />
         ))}

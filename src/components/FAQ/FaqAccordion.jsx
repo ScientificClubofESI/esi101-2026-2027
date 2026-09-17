@@ -2,29 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import faqData from "./FaqData.json";
 
-const faqData = [
-  {
-    question: "What is student life at ESI really like?",
-    answer: "You can fully integrate into the club by actively participating in events, joining project teams, attending weekly meetings, and connecting with other members through our social activities and workshopsYou can fully integrate into the club by actively participating in events, joining project teams, attending weekly meetings, and connecting with other members through our social activities and workshops",
-  },
-  {
-    question: "Is ESI as difficult as people say?",
-    answer: "You can fully integrate into the club by actively participating in events, joining project teams, attending weekly meetings, and connecting with other members through our social activities and workshopsYou can fully integrate into the club by actively participating in events, joining project teams, attending weekly meetings, and connecting with other members through our social activities and workshops",
-  },
-  {
-    question: "What should I expect in my first year?",
-    answer: "You can fully integrate into the club by actively participating in events, joining project teams, attending weekly meetings, and connecting with other members through our social activities and workshopsYou can fully integrate into the club by actively participating in events, joining project teams, attending weekly meetings, and connecting with other members through our social activities and workshops",
-  },
-  {
-    question: "How do I manage my time at ESI?",
-    answer: "You can fully integrate into the club by actively participating in events, joining project teams, attending weekly meetings, and connecting with other members through our social activities and workshopsYou can fully integrate into the club by actively participating in events, joining project teams, attending weekly meetings, and connecting with other members through our social activities and workshops",
-  },
-  {
-    question: "What are the best ways to get involved?",
-    answer: "You can fully integrate into the club by actively participating in events, joining project teams, attending weekly meetings, and connecting with other members through our social activities and workshopsYou can fully integrate into the club by actively participating in events, joining project teams, attending weekly meetings, and connecting with other members through our social activities and workshops",
-  },
-];
+
 
 export default function FaqAccordion() {
   const [openIndexes, setOpenIndexes] = useState(new Set());
@@ -48,7 +28,7 @@ export default function FaqAccordion() {
         return (
           <div
   key={index}
-  className={`bg-accordion overflow-hidden transition-[border-radius] duration-300 ${
+  className={`bg-[#C8ED1F] dark:bg-[#172AAF] overflow-hidden transition-[border-radius] duration-300 ${
     isOpen ? "rounded-3xl" : "rounded-3xl rounded-bl-none"
   }`}
 >
@@ -90,7 +70,7 @@ export default function FaqAccordion() {
     style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
   >
     <div className="overflow-hidden">
-      <p className="pl-18 pr-28 pb-10 pt-3 text-lg text-foreground/80 font-consolas leading-relaxed">
+      <p className="pl-18 pr-28 pb-10 pt-3 text-lg text-[#00072A] dark:text-[#F2FAFD] font-consolas leading-relaxed">
         {item.answer}
       </p>
     </div>
