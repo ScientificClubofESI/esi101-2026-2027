@@ -4,14 +4,15 @@
 :root {
   --background: #F2FAFD;
   --foreground: #00072A;
+  --navBar : #B2B8E4 ;
 }
 
-.dark{
+.dark {
   --background: #00072A;
   --foreground: #F2FAFD;
+  --navBar : #0C1558 ;
+
 }
-
-
 
 @theme inline {
   --color-background: var(--background);
@@ -24,12 +25,13 @@
   --color-secondary-700: #859E15;
   --color-secondary-900: #434F0A;
   --font-consolas: var(--font-consolas), monospace;
+  --font-consolas: var(--font-consolas-local), monospace;
   --font-haetten: var(--font-haettenschweiler), Impact, sans-serif;
 }
-
 
 body {
   background-color: var(--background);
   color: var(--foreground);
   transition: background-color 0.2s ease, color 0.2s ease;
 }
+

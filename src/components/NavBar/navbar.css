@@ -1,0 +1,133 @@
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 49px;
+  color: var(--foreground);
+  font-size: 22px;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(158, 156, 156, 0);
+  padding: 8px;
+}
+a:hover {
+  background: transparent;
+  border: 1px solid rgba(158, 156, 156, 0.25);
+  border-radius: 12px;
+  height: 90%;
+}
+.links {
+  position: relative;
+  padding: 0 20px;
+  width: 75%;
+  border-radius: 20px;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.links::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--background);
+  border-radius: inherit;
+  z-index: 0;
+}
+.links > * {
+  position: relative;
+  z-index: 1;
+}
+.links-inner {
+  width: 67%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.logo {
+  width: 33%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.logo img {
+  height: 24px;
+  width: 80px;
+}
+@media (max-width: 1213px) {
+  .navbar .links .burger {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+  }
+  .navbar .links .burger div {
+    height: 2px;
+    border-radius: 2px;
+    width: 100%;
+    background-color: var(--foreground);
+  }
+  .navbar {
+    position: fixed;
+    top: 0;
+    margin-top: 20px;
+    height: 156px;
+    display: flex;
+    flex-direction: column;
+    width: 1fr;
+  }
+  .navbar div {
+    width: 100%;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+  }
+  .toggled {
+    position: absolute;
+    top: 100%;
+    background-color: var(--navBar);
+    color: var(--foreground);
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-evenly;
+    height: 500%;
+
+    width: 100%;
+    border-radius: 0 0px 20px 20px;
+  }
+  .links-inner {
+    display: none;
+  }
+  .rounded {
+    border-radius: 20px 20px 0px 0px;
+  }
+  .links::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--navBar);
+    color: var(--foreground);
+
+    border-radius: inherit;
+    z-index: 0;
+  }
+}
