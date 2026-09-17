@@ -71,7 +71,7 @@ const captionStyle =
   "font-consolas font-bold leading-[1.35] text-[#00072A] text-[clamp(0.75rem,1.15vw,1.375rem)]";
 
 const buttonStyle =
-  "items-center justify-between gap-[0.8em] rounded-[1.1em] bg-[#C8ED1F] px-[1.1em] py-[0.5em] " +
+  "items-center justify-between gap-[0.8em] h-[64px] rounded-[0.6em] bg-[#C8ED1F] px-[1.1em] py-[0.1em] mt-2 " +
   "font-haetten text-[#172AAF] text-[clamp(1.125rem,1.7vw,2rem)] leading-none whitespace-nowrap";
 
 // Visual only for now — no handler is wired up yet.
@@ -105,7 +105,7 @@ const Hero = () => {
         </div>
 
         {/* Wide screens: button inside the top-right notch. */}
-        <ChatButton className="hidden min-[1100px]:flex absolute right-[1.1%] top-[2.16%] w-[18.5%] h-[9%]" />
+        <ChatButton className="hidden min-[1100px]:flex absolute right-[1.1%] top-[2.16%] w-[18.5%] h-[9%] cursor-pointer  hover:brightness-110" />
 
         <h1 className="absolute left-[4%] bottom-[5%] w-[52%] sm:w-[40%] min-[1100px]:left-[2.4%] min-[1100px]:bottom-[18%] min-[1100px]:w-[31.7%]">
           <Image

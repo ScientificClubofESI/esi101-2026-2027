@@ -14,61 +14,55 @@ const links = [
 ];
 
 const NavBar = ({ toggleChatbot }) => {
+  const [mounted, setMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [listToggled , toggleList] = useState(false); 
-   const { resolvedTheme, setTheme } = useTheme();
+  const [listToggled, toggleList] = useState(false);
+  const { resolvedTheme } = useTheme();
+
   useEffect(() => {
+    setMounted(true);
+
     const handleResize = () => {
       setIsMobile(window.innerWidth < 1200);
       console.log("the mobile is on:", window.innerWidth < 1200);
     };
 
-    // Set initial value
+    // Set initial value on client mount
     handleResize();
 
     window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const logoSrc =
+    mounted && resolvedTheme === "dark"
+      ? "/assets/logo-light.svg"
+      : "/assets/logo-dark.svg";
+
   return (
-    <div className="navbar">
-      <div className= {listToggled? "links rounded " : "links"}>
+    <div className="absolute z-1 left-0 -ml-16 top-14 navbar w-[90%] h-[64px]">
+      <div className={listToggled ? "links rounded " : "links"}>
         <div className="logo">
-          <img src={resolvedTheme === "dark" ? "/assets/logo-light.svg" :"/assets/logo-dark.svg" }alt="ESI 101 logo" />
+          <img src={logoSrc} alt="ESI 101 logo" />
         </div>
 
-       
-
-        <div className={listToggled&&isMobile ? "toggled" : "links-inner"} >
+        <div className={listToggled && isMobile ? "toggled" : "links-inner"}>
           {links.map((link, index) => (
             <a className="font-haetten" href={link} key={index}>
               {link}
-
             </a>
           ))}
         </div>
 
         <ThemeToggle />
-         {isMobile && (
-          <div className="burger" onClick={()=>toggleList(prev => !prev)}>
+
+        {mounted && isMobile && (
+          <div className="burger" onClick={() => toggleList((prev) => !prev)}>
             {[1, 2, 3].map((item, index) => (
-              <div className={item} key={index}></div>
+              <div className={`line-${item}`} key={index}></div>
             ))}
           </div>
         )}
-      </div>
-
-      <div
-        className="chatbot"
-        onClick={() => toggleChatbot(true)}
-      >
-        <div>
-          <p className="font-haetten">Chat with Cissou</p>
-          <img src="/assets/cissouBtn.svg" alt="Chat with Cissou" />
-        </div>
       </div>
     </div>
   );
