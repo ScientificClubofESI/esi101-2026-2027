@@ -67,12 +67,12 @@ const CSS = `
 
 // Font sizes are in vw so the text scales with the card and fits its notch.
 const captionStyle =
-  "items-center rounded-xl border-2 border-royal bg-periwinkle pl-[1.9em] pr-[2.8em] " +
-  "font-consolas font-bold leading-[1.35] text-ink text-[clamp(0.75rem,1.15vw,1.375rem)]";
+  "items-center rounded-xl border-2 border-[#172AAF] bg-[#BFC5E9] pl-[1.9em] pr-[2.8em] " +
+  "font-consolas font-bold leading-[1.35] text-[#00072A] text-[clamp(0.75rem,1.15vw,1.375rem)]";
 
 const buttonStyle =
-  "items-center justify-between gap-[0.8em] rounded-[1.1em] bg-lime px-[1.1em] py-[0.5em] " +
-  "font-haetten text-royal text-[clamp(1.125rem,1.7vw,2rem)] leading-none whitespace-nowrap";
+  "items-center justify-between gap-[0.8em] rounded-[1.1em] bg-[#C8ED1F] px-[1.1em] py-[0.5em] " +
+  "font-haetten text-[#172AAF] text-[clamp(1.125rem,1.7vw,2rem)] leading-none whitespace-nowrap";
 
 // Visual only for now — no handler is wired up yet.
 const ChatButton = ({ className = "" }) => (
