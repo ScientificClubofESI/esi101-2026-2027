@@ -166,13 +166,9 @@
 .description-box p {
   margin: 0;
   max-width: 100%;
-
   text-align: center;
-
   font-weight: 700;
-  font-size: clamp(11px, 1.3vw, 30px);
   line-height: 1.4;
-
   color: var(--navy);
 }
 
@@ -469,9 +465,6 @@
     padding: 0 8vw;
   }
 
-  .description-box p {
-    font-size: clamp(12px, 2.6vh, 20px);
-  }
 
   .description-corner {
     width: 12vw;

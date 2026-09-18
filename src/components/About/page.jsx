@@ -85,7 +85,7 @@ export default function WhoBehind() {
           <div className="description-corner description-corner-left" />
           <div className="description-corner description-corner-right" />
 
-          <p>
+          <p className="lg:text-2xl text-md">
             CSE — the Scientific Club of ESI! Founded in 2008 by students of the
             National School of Computer Science, CSE is a vibrant community
             where students learn, create, connect, and explore technology
