@@ -2,7 +2,8 @@
 import { React, useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { X } from "lucide-react";
-const ChatBot = () => {
+
+const ChatBot = ({ className = "" }) => {
   const chatRef = useRef(null);
   const questionRef = useRef(null);
   const [showQuestions, setShowQuestions] = useState(true);
@@ -78,137 +79,137 @@ const ChatBot = () => {
     }
   }
   return (
-    <div className="justify-end flex">
-      <div className="  justify-end">
-        <button
-          className="bg-secondary-500  fixed md:absolute bottom-10  z-50 right-5  md:top-14 md:right-24   rounded-[15px] h-14.5 items-center gap-x-6.5 flex flex-row pr-5 pl-5 md:w-57 cursor-pointer "
-          onClick={() => setShowBot(true)}
+    <div className={className}>
+      <button
+        className="bg-secondary-500 rounded-[15px] h-full w-full items-center justify-center gap-x-[0.6em] flex flex-row px-[1em] cursor-pointer"
+        onClick={() => setShowBot(true)}
+      >
+        <p className="text-primary-500 font-haetten text-[clamp(0.9rem,1.4vw,1.5rem)] whitespace-nowrap max-[420px]:hidden">
+          Chat with Cissou
+        </p>
+        <Image
+          src="/assets/cissou.svg"
+          height={28}
+          width={31}
+          alt="cissou icon"
+          className="h-[60%] w-auto"
+        />
+      </button>
+
+      {showBot && (
+        <div
+          className="fixed bottom-4 right-20 w-190 max-md:w-full max-md:right-0 max-md:top-0
+md:h-140 max-md:h-full bg-[#EDF9B4] dark:bg-[#6471CA] z-50
+md:rounded-[30px] flex flex-col pb-4 content-between"
         >
-          <p className="text-primary-500 text-[24px] font-haetten max-md:hidden ">
-            Chat with Cissou
-          </p>
-          <Image
-            src="/assets/cissou.svg"
-            height={28}
-            width={31}
-            alt="cissou icon"
-          />
-        </button>
-        {showBot && (
-          <div
-            className="fixed top-4 right-20 w-190 max-md:w-full max-md:right-0 max-md:top-0
-  md:h-140 max-md:h-full bg-[#EDF9B4] dark:bg-[#6471CA] z-50
-  md:rounded-[30px] flex flex-col pb-4 content-between"
-          >
-            <div className="flex flex-row justify-between w-full md:items-start  max-md:items-center max-md:mt-7.5  max-md:pr-6 max-md:pl-6">
-              <Image
-                src="/assets/cissou.svg"
-                alt="img"
-                height={35}
-                width={35}
-                className="md:hidden  "
-              />
-              <Image
-                src="/assets/top-left bot.svg"
-                alt="img"
-                height={190}
-                width={167}
-                className={`${questionResponse.length === 0 ? "" : "opacity-65"} max-md:hidden  `}
-              />
-              <X
-                className="cursor-pointer md:mr-6.5 md:mt-4.5 "
-                height={24}
-                width={24}
-                color="#23313A"
-                onClick={() => setShowBot(false)}
-              />
-            </div>
-            {questionResponse.length === 0 ? (
-              <div className="flex flex-row justify-center  z-50 md:-mt-15 max-md:mt-65 ">
-                <div className="w-77.5 flex flex-col items-center  ">
-                  <Image
-                    src="/assets/cissou2.svg"
-                    alt="cissou"
-                    height={64}
-                    width={69}
-                  />
-                  <p className="text-[32px] text-primary-500  font-haetten">
-                    <span className="text-secondary-500 dark:text-[#00072A]">
-                      Hey there ,
-                    </span>{" "}
-                    I’m Cissou !
-                  </p>
-                  <p className="text-[#00072A] text-[18px] font-consolas">
-                    What would you like to know ?{" "}
-                  </p>
-                </div>
+          <div className="flex flex-row justify-between w-full md:items-start  max-md:items-center max-md:mt-7.5  max-md:pr-6 max-md:pl-6">
+            <Image
+              src="/assets/cissou.svg"
+              alt="img"
+              height={35}
+              width={35}
+              className="md:hidden  "
+            />
+            <Image
+              src="/assets/top-left bot.svg"
+              alt="img"
+              height={190}
+              width={167}
+              className={`${questionResponse.length === 0 ? "" : "opacity-65"} max-md:hidden  `}
+            />
+            <X
+              className="cursor-pointer md:mr-6.5 md:mt-4.5 "
+              height={24}
+              width={24}
+              color="#23313A"
+              onClick={() => setShowBot(false)}
+            />
+          </div>
+          {questionResponse.length === 0 ? (
+            <div className="flex flex-row justify-center  z-50 md:-mt-15 max-md:mt-65 ">
+              <div className="w-77.5 flex flex-col items-center  ">
+                <Image
+                  src="/assets/cissou2.svg"
+                  alt="cissou"
+                  height={64}
+                  width={69}
+                />
+                <p className="text-[32px] text-primary-500  font-haetten">
+                  <span className="text-secondary-500 dark:text-[#00072A]">
+                    Hey there ,
+                  </span>{" "}
+                  I'm Cissou !
+                </p>
+                <p className="text-[#00072A] text-[18px] font-consolas">
+                  What would you like to know ?{" "}
+                </p>
               </div>
-            ) : (
-              <div
-                className=" z-50 md:-mt-30 overflow-y-scroll h-full custom-scrollbar1 mr-2.5 max-md:mt-8 "
-                ref={chatRef}
-              >
-                {questionResponse.map((res, index) => (
-                  <div key={index} className="mb-8 ">
-                    <div className="w-full flex justify-end pr-5">
-                      <div
-                        className="rounded-t-[15px] rounded-bl-[15px] bg-[#FFFFFF] pt-2.5 pb-2.5 pr-2.5 pl-5 
-                       dark:bg-[#8B95D7] md:w-100 min-[522px]:w-80 max-[522px]:w-66 "
-                      >
-                        <p className="text-[#00072A]  text-[16px] font-consolas dark:text-[#00072A] ">
-                          {res.question}
-                        </p>{" "}
-                      </div>
-                    </div>
-                    <div className="pl-3">
-                      <Image
-                        src="/assets/cissou.svg"
-                        height={28}
-                        width={32}
-                        alt="cissou"
-                        className=""
-                      />
-                      <div
-                        className="rounded-b-[15px] dark:bg-[#3E4EBC] rounded-tr-[15px] bg-[#DAF36A] pt-2.5 pb-2.5 pr-2.5 pl-5 
-                     ml-10  md:w-116 min-[522px]:w-80 max-[522px]:w-69  "
-                      >
-                        <p className="text-[#00072A]  text-[16px] font-consolas dark:text-[#F2FAFD] ">
-                          {res.response}
-                        </p>{" "}
-                      </div>
+            </div>
+          ) : (
+            <div
+              className=" z-50 md:-mt-30 overflow-y-scroll h-full custom-scrollbar1 mr-2.5 max-md:mt-8 "
+              ref={chatRef}
+            >
+              {questionResponse.map((res, index) => (
+                <div key={index} className="mb-8 ">
+                  <div className="w-full flex justify-end pr-5">
+                    <div
+                      className="rounded-t-[15px] rounded-bl-[15px] bg-[#FFFFFF] pt-2.5 pb-2.5 pr-2.5 pl-5 
+                   dark:bg-[#8B95D7] md:w-100 min-[522px]:w-80 max-[522px]:w-66 "
+                    >
+                      <p className="text-[#00072A]  text-[16px] font-consolas dark:text-[#00072A] ">
+                        {res.question}
+                      </p>{" "}
                     </div>
                   </div>
-                ))}
-              </div>
-            )}
-
-            <div
-              className={`flex flex-col  ${questionResponse.length === 0 ? "h-full" : ""}`}
-            >
-              <div className="w-full pr-4 pl-4  flex flex-col  gap-y-3 mt-auto  ">
-                {showQuestions && <Questions />}
-
-                <div className=" bg-secondary-500 rounded-[17px] pr-7.5 pl-7.5 pt-3.75 pb-3.75 flex flex-row justify-between items-center dark:bg-[#3E4EBC] ">
-                  <textarea
-                    className="outline-0  w-full scrollbar-none h-6 resize-none   text-[17px] font-consolas  placeholder:opacity-100 placeholder:text-[#00072A] dark:placeholder:text-[#EFEFF0] "
-                    placeholder="Ask Cissou here"
-                    ref={questionRef}
-                    onKeyDown={handleEnterKey}
-                  ></textarea>
-                  <Image
-                    src="/assets/send.svg"
-                    alt="send"
-                    height={26}
-                    width={26}
-                    className="cursor-pointer"
-                    onClick={() => askQuestion()}
-                  />
+                  <div className="pl-3">
+                    <Image
+                      src="/assets/cissou.svg"
+                      height={28}
+                      width={32}
+                      alt="cissou"
+                      className=""
+                    />
+                    <div
+                      className="rounded-b-[15px] dark:bg-[#3E4EBC] rounded-tr-[15px] bg-[#DAF36A] pt-2.5 pb-2.5 pr-2.5 pl-5 
+                 ml-10  md:w-116 min-[522px]:w-80 max-[522px]:w-69  "
+                    >
+                      <p className="text-[#00072A]  text-[16px] font-consolas dark:text-[#F2FAFD] ">
+                        {res.response}
+                      </p>{" "}
+                    </div>
+                  </div>
                 </div>
+              ))}
+            </div>
+          )}
+
+          <div
+            className={`flex flex-col  ${questionResponse.length === 0 ? "h-full" : ""}`}
+          >
+            <div className="w-full pr-4 pl-4  flex flex-col  gap-y-3 mt-auto  ">
+              {showQuestions && <Questions />}
+
+              <div className=" bg-secondary-500 rounded-[17px] pr-7.5 pl-7.5 pt-3.75 pb-3.75 flex flex-row justify-between items-center dark:bg-[#3E4EBC] ">
+                <textarea
+                  className="outline-0  w-full scrollbar-none h-6 resize-none   text-[17px] font-consolas  placeholder:opacity-100 placeholder:text-[#00072A] dark:placeholder:text-[#EFEFF0] "
+                  placeholder="Ask Cissou here"
+                  ref={questionRef}
+                  onKeyDown={handleEnterKey}
+                ></textarea>
+                <Image
+                  src="/assets/send.svg"
+                  alt="send"
+                  height={26}
+                  width={26}
+                  className="cursor-pointer"
+                  onClick={() => askQuestion()}
+                />
               </div>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
