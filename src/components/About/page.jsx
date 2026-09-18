@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "../../styles/WhoBehind.css";
 
 const ASSETS = "/assets/who-behind";
@@ -9,34 +9,23 @@ export default function WhoBehind() {
   const [expanded, setExpanded] = useState(false);
   const slideRef = useRef(null);
 
-  const handleProximity = (e) => {
+  useEffect(() => {
     const slide = slideRef.current;
     if (!slide) return;
-    const cluster = slide.querySelector(".photo-cluster");
-    if (!cluster) return;
 
-    const slideRect = slide.getBoundingClientRect();
-    const clusterRect = cluster.getBoundingClientRect();
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setExpanded(entry.isIntersecting);
+      },
+      { threshold: 0.5 },
+    );
 
-    const cx = clusterRect.left + clusterRect.width / 2;
-    const cy = clusterRect.top + clusterRect.height / 2;
-
-    const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
-    const threshold = slideRect.width * 0.22;
-
-    setExpanded(dist < threshold);
-  };
-
-  const toggleExpanded = () => setExpanded((v) => !v);
+    observer.observe(slide);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <main
-      id="about"
-      ref={slideRef}
-      className="who-page my-20"
-      onMouseMove={handleProximity}
-      onMouseLeave={() => setExpanded(false)}
-    >
+    <main id="about" ref={slideRef} className="who-page my-[5vw] ">
       {/* =====================================================
           DECORATIONS
       ====================================================== */}
@@ -115,12 +104,7 @@ export default function WhoBehind() {
           PHOTO CLUSTER (resting deck / fanned on proximity)
       ====================================================== */}
 
-      <section
-        className={`photo-cluster${expanded ? " is-expanded" : ""}`}
-        onClick={toggleExpanded}
-        onMouseEnter={() => setExpanded(true)}
-        onMouseLeave={() => setExpanded(false)}
-      >
+      <section className={`photo-cluster${expanded ? " is-expanded" : ""}`}>
         <div className="card card-1">
           <img
             src={`${ASSETS}/card-1-photobooth.png`}

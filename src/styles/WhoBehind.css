@@ -23,7 +23,6 @@
   --banner: #cbdd3f;
   --olive: #a9be2e;
   --bg: #F2FAFD;
-
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -526,7 +525,7 @@
 
   .esi-computer {
     left: 70vw;
-    top: 80vh;
+    top: 92vh;
     width: 26vw;
   }
 }
@@ -538,7 +537,7 @@
 
 @media (max-width: 430px) {
   .who-page {
-    min-height: 900px;
+    min-height: 790px;
   }
 
   .who-header h1 {
@@ -546,6 +545,6 @@
   }
 
   .photo-cluster {
-    top: 60vh;
+    top: 68vh;
   }
 }
