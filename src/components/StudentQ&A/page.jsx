@@ -1,19 +1,60 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 
-const VIDEO_URL = "https://www.w3schools.com/html/mov_bbb.mp4";
+const VIDEO_ID = "CevCPGdWXBg";
+const VIDEO_URL = `https://www.youtube.com/embed/${VIDEO_ID}?si=9GZ8iwgx4k2qjaHY&enablejsapi=1`;
 
 const StudentQA = () => {
   const playerRef = useRef(null);
   const videoRef = useRef(null);
+  const iframeReady = useRef(false);
   const [isPlaying, setIsPlaying] = useState(false);
+
+  const sendPlayCommand = () => {
+    videoRef.current?.contentWindow?.postMessage(
+      JSON.stringify({ event: "command", func: "playVideo", args: [] }),
+      "*",
+    );
+  };
 
   const handlePlay = () => {
     playerRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-    videoRef.current?.play?.();
+    setIsPlaying(true);
+
+    if (iframeReady.current) {
+      sendPlayCommand();
+    } else {
+      const interval = setInterval(() => {
+        if (iframeReady.current) {
+          sendPlayCommand();
+          clearInterval(interval);
+        }
+      }, 100);
+      setTimeout(() => clearInterval(interval), 3000); 
+    }
   };
+
+  const handleIframeLoad = () => {
+    iframeReady.current = true;
+  };
+
+  useEffect(() => {
+    const handleMessage = (e) => {
+      if (e.origin !== "https://www.youtube.com") return;
+      try {
+        const data = JSON.parse(e.data);
+        if (data.event === "onStateChange") {
+          if (data.info === 1) setIsPlaying(true); // playing
+          if (data.info === 2 || data.info === 0) setIsPlaying(false);
+        }
+      } catch {
+      }
+    };
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
+  }, []);
 
   return (
     <section
@@ -53,20 +94,15 @@ const StudentQA = () => {
           className="relative h-full overflow-clip rounded-[18px] border-[0.6px] border-dashed border-primary-900 lg:rounded-[60px] lg:border-2 lg:border-primary-500 dark:lg:border-secondary-500"
         >
           <div className="absolute inset-[4px] overflow-clip rounded-[15px] lg:inset-[13px] lg:rounded-[50px] z-10">
-            {VIDEO_URL ? (
-              <video
-                ref={videoRef}
-                className="h-full w-full object-cover"
-                controls
-                src={VIDEO_URL}
-                poster="/assets/studentsQ&A/poster.jpg"
-                preload="metadata"
-                playsInline
-                onPlay={() => setIsPlaying(true)}
-                onPause={() => setIsPlaying(false)}
-                onEnded={() => setIsPlaying(false)}
-              />
-            ) : null}
+            <iframe
+              ref={videoRef}
+              className="h-full w-full object-cover"
+              src={VIDEO_URL}
+              title="Student Q&A video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              onLoad={handleIframeLoad}
+            />
             {!isPlaying && (
               <button
                 aria-label="Play video"

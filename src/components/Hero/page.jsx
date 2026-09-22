@@ -8,8 +8,7 @@ const CISSOU_LOGO = "/assets/cisso_logo.svg";
 
 const CAPTION =
   "Discover student life, get answers to your questions, and know what to expect when you arrive.";
-const CAPTION_SM =
-  "Your first steps into life at ESI.";
+const CAPTION_SM = "Your first steps into life at ESI.";
 
 // Above this width we switch to the wider desktop notch (long caption, two-line bubble).
 const NOTCH_AT = 1100;
@@ -64,7 +63,7 @@ function buildMask(blX, blY, trY) {
   return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
 }
 
-const MASK_MOBILE  = buildMask(BL_X_MOBILE,  BL_Y_MOBILE,  TR_Y);
+const MASK_MOBILE = buildMask(BL_X_MOBILE, BL_Y_MOBILE, TR_Y);
 const MASK_DESKTOP = buildMask(BL_X_DESKTOP, BL_Y_DESKTOP, TR_Y_DESKTOP);
 
 const CSS = `
@@ -102,7 +101,7 @@ const Hero = () => {
           />
         </div>
 
-\        <ChatBot className="absolute right-[1.1%] sm:top-[3.5%] top-1 w-[18.5%] sm:h-[64px] h-[9%] min-h-10" />
+        <ChatBot className="absolute right-[1.1%] sm:top-[3.5%] top-1 w-[18.5%] sm:h-[64px] h-[9%] min-h-10" />
 
         <h1 className="absolute left-[4%] bottom-[17%] w-[52%] sm:w-[40%] min-[1100px]:left-[2.4%] min-[1100px]:bottom-[18%] min-[1100px]:w-[31.7%]">
           <Image
