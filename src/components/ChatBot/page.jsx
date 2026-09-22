@@ -4,7 +4,7 @@ import Image from "next/image";
 import { X } from "lucide-react";
 
 const CISSOU_API_URL =
-  "https://cissou-cse-hxfdhebzewhphsev.spaincentral-01.azurewebsites.net/chat";
+  "https://cissou-cse-hxfdhebzewhphsev.spaincentral-01.azurewebsites.net";
 
 const ChatBot = ({ className = "" }) => {
   const chatRef = useRef(null);
