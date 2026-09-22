@@ -3,12 +3,19 @@ import { React, useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { X } from "lucide-react";
 
+const CISSOU_API_URL =
+  "https://cissou-cse-hxfdhebzewhphsev.spaincentral-01.azurewebsites.net/chat";
+
 const ChatBot = ({ className = "" }) => {
   const chatRef = useRef(null);
   const questionRef = useRef(null);
   const [showQuestions, setShowQuestions] = useState(true);
   const [showBot, setShowBot] = useState(false);
   const [questionResponse, setQuestionResponse] = useState([]);
+  // Tracks the backend's session_id across turns so follow-up questions
+  // ("what about 2nd year?") have real conversation memory, instead of
+  // every message starting a fresh session.
+  const [sessionId, setSessionId] = useState(null);
   useEffect(() => {
     if (chatRef.current) {
       chatRef.current.scrollTop = chatRef.current.scrollHeight;
@@ -56,7 +63,7 @@ const ChatBot = ({ className = "" }) => {
     );
   }
 
-  function askQuestion(question) {
+  async function askQuestion(question) {
     let value = "";
     if (question === undefined) {
       value = questionRef.current.value;
@@ -64,13 +71,64 @@ const ChatBot = ({ className = "" }) => {
     } else {
       value = question;
     }
+    if (!value.trim()) return;
 
     setShowQuestions(false);
-    let result = {};
-    result.question = value;
-    result.response =
-      " doloremque! Reprehenderit, aliquid itaque molestias numquam similique ea obcaecati aliquam?";
-    setQuestionResponse([...questionResponse, result]);
+
+    // Show the question immediately with a "thinking" placeholder, so the
+    // chat feels responsive while the real answer is still in flight
+    // (a real LLM call typically takes a few seconds).
+    setQuestionResponse((prev) => [
+      ...prev,
+      { question: value, response: "…", pending: true },
+    ]);
+
+    try {
+      const res = await fetch(CISSOU_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: value,
+          ...(sessionId ? { session_id: sessionId } : {}),
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Request failed with status ${res.status}`);
+      }
+
+      const data = await res.json();
+      const reply =
+        data.reply ||
+        data.response ||
+        data.message ||
+        "Sorry, I couldn't come up with an answer for that.";
+
+      if (data.session_id) {
+        setSessionId(data.session_id);
+      }
+
+      setQuestionResponse((prev) =>
+        prev.map((entry, i) =>
+          i === prev.length - 1
+            ? { ...entry, response: reply, pending: false }
+            : entry
+        )
+      );
+    } catch (err) {
+      setQuestionResponse((prev) =>
+        prev.map((entry, i) =>
+          i === prev.length - 1
+            ? {
+                ...entry,
+                response:
+                  "Sorry, I'm having trouble connecting right now. Please try again in a moment.",
+                pending: false,
+              }
+            : entry
+        )
+      );
+    }
   }
   function handleEnterKey(event) {
     if (event.key === "Enter") {
