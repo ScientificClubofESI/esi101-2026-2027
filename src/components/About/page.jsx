@@ -32,8 +32,14 @@ export default function WhoBehind() {
 
       {/* Blue diagonal strokes above the title */}
       <img
-        className="decoration-lines"
+        className="decoration-lines dark:hidden"
         src={`${ASSETS}/lines decoration.png`}
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        className="decoration-lines dark:block hidden"
+        src={'assets/studentsQ&A/dark_mode_frame.svg'}
         alt=""
         aria-hidden="true"
       />
@@ -62,10 +68,10 @@ export default function WhoBehind() {
         {/* TITLE */}
         <header className="who-header">
           <h1>
-            <span className="title-blue">Who&apos;s</span>{" "}
+            <span className="title-blue dark:text-white">Who&apos;s</span>{" "}
             <span className="title-green">behind</span>{" "}
-            <span className="title-blue">ESI.101</span>
-            <span className="title-blue"> ?</span>
+            <span className="title-blue dark:text-white">ESI.101</span>
+            <span className="title-blue dark:text-white"> ?</span>
           </h1>
         </header>
 
