@@ -84,7 +84,7 @@ const ChatBot = ({ className = "" }) => {
     ]);
 
     try {
-      const res = await fetch(CISSOU_API_URL, {
+            const res = await fetch(`${CISSOU_API_URL}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
