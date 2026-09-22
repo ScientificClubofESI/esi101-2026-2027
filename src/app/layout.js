@@ -28,8 +28,8 @@ const baloo = Baloo_2({
 })
 
 export const metadata = {
-  title: "ESI101 2026-2027",
-  description: "Official ESI101 website for the 2026-2027 school year",
+  title: "ESI101",
+  description: "Discover student life, get answers to your questions, and know what to expect when you arrive.",
 };
 
 export default function RootLayout({ children }) {

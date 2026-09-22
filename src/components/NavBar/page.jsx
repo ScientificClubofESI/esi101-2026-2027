@@ -28,7 +28,7 @@ const NavBar = ({ toggleChatbot }) => {
       : "/assets/logo-dark.svg";
 
   return (
-    <div className="absolute z-10 sm:left-26 top-14 w-[68%] max-[1213px]:absolute max-[1213px]:top-0 max-[1213px]:mt-5 max-[1213px]:ml-0 max-[1213px]:w-full max-[1213px]:px-4">
+    <div className="absolute z-10 sm:left-2 md:pb-10 lg:mb-0  lg:left-26 top-14 w-[68%] max-[1213px]:absolute max-[1213px]:top-0 max-[1213px]:mt-5 max-[1213px]:ml-0 max-[1213px]:w-full max-[1213px]:px-4">
       <div
         className={`relative h-16 rounded-[20px] max-[1213px]:h-auto max-[1213px]:rounded-2xl
           max-[1213px]:bg-[var(--navBar)]

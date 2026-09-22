@@ -86,10 +86,10 @@ const captionStyle =
 
 const Hero = () => {
   return (
-    <section className="w-full bg-background px-[5.33%] pt-24 sm:pt-8 sm:pb-14">
+    <section className="w-full bg-background px-[5.33%] pt-24 sm:pt-30 lg:pt-8 sm:pb-14">
       <style>{CSS}</style>
 
-      <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] min-[1100px]:aspect-[53/27]">
+      <div className="relative w-full aspect-4/3 sm:aspect-[16/9] min-[1100px]:aspect-[53/27]">
         <div className="hero-photo absolute inset-0">
           <Image
             src={HERO_IMAGE}

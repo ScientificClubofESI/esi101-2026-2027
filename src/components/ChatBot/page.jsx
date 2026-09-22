@@ -84,7 +84,7 @@ const ChatBot = ({ className = "" }) => {
     ]);
 
     try {
-            const res = await fetch(`${CISSOU_API_URL}/api/chat`, {
+      const res = await fetch(`${CISSOU_API_URL}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -112,8 +112,8 @@ const ChatBot = ({ className = "" }) => {
         prev.map((entry, i) =>
           i === prev.length - 1
             ? { ...entry, response: reply, pending: false }
-            : entry
-        )
+            : entry,
+        ),
       );
     } catch (err) {
       setQuestionResponse((prev) =>
@@ -125,8 +125,8 @@ const ChatBot = ({ className = "" }) => {
                   "Sorry, I'm having trouble connecting right now. Please try again in a moment.",
                 pending: false,
               }
-            : entry
-        )
+            : entry,
+        ),
       );
     }
   }
@@ -142,7 +142,7 @@ const ChatBot = ({ className = "" }) => {
         className="bg-secondary-500 rounded-[15px] h-full w-full items-center justify-center gap-x-[0.6em] flex flex-row px-[1em] cursor-pointer"
         onClick={() => setShowBot(true)}
       >
-        <p className="text-primary-500 font-haetten text-[clamp(0.9rem,1.4vw,1.5rem)] whitespace-nowrap max-[420px]:hidden">
+        <p className="text-primary-500 hidden md:block font-haetten text-[clamp(0.9rem,1.4vw,1.5rem)] whitespace-nowrap max-[420px]:hidden">
           Chat with Cissou
         </p>
         <Image
